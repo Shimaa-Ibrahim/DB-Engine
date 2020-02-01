@@ -12,7 +12,8 @@ echo "\"DATABASE ENGINE\""
 echo "1- List DATABASE"
 echo "2- Create DATABASE"
 echo "3- Connect to DATABASE"
-echo "4- EXIT"
+echo "4- Drop DATABASE"
+echo "5- EXIT"
 read -s number
 case $number in 
 	1)
@@ -56,13 +57,35 @@ case $number in
 	 cd ~/DBMS/$dbname
 	 #tableList function 
 	 else
-	 echo "$dbname is NOT EXIST"
+	 echo "$dbname DOES NOT EXIST"
 	 read -s
 	 mainMenu
 	 fi
  	 ;;
 	
 	4)
+ 	 clear
+	 echo "Enter DATABASE name"
+	 read dbname
+ 	 if [ -d ~/DBMS/$dbname ]
+	 then
+	 echo "Are you sure you want to delete $dbname BATABASE [y|n]"
+	 read ans
+	 case $ans in 
+	 y)
+	 rm -r ~/DBMS/$dbname 
+	 echo "$dbname deleted SUCCESSFULLY"
+	 mainMenu;;
+	 *)
+	 mainMenu;;
+ 	 esac
+	 else
+	 echo "$dbname DOES NOT EXIST"
+	 read -s 
+	 mainMenu	
+	 fi		
+	;;
+	5)
    	 exit;;
 
 	*)
