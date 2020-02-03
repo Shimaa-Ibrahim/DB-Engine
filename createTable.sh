@@ -13,11 +13,11 @@ function createTable {
 					while [ 1 -eq 1 ]
 					do
 						
-						if [ -f $tname ]
+						if [[ -f $tname ]]  
 							then
 							echo "$tname Already EXISTS"
 							read tname
-						elif [[ -z $tname  ]]
+						elif [[ -z $tname ]]
 						then
 							echo "$tname not valid enter a valid name"
 							echo "elif 1"
