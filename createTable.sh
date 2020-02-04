@@ -1,38 +1,42 @@
-#!/bin/bash
-
-
+#!/usr/bin/bash 
 shopt -s extglob
 
-function createTable {
-	                                
+function createTable {	
+clear                                
 string='^[a-z]|[A-Z]$'
 echo "Enter Table Name"
-read tname
+read tableName
 while [ 1 -eq 1 ]
 	do
                 #here fix this by add dbname before table name
-		if [[ -f ~/DB-Engine/$tableName ]]
+		if [ -f $tableName ] && [ ! -z $tableName ]
 		then
 			echo "$tableName Already EXISTS"
+			read -p "TRY AGAIN! [y|N] : " ans
+			if [ $ans == "y" ]
+			then			
+			break
+			else
 			read tableName
-		elif [[ -z $tableName  ]]
+			fi
+		elif [ -z $tableName ]
 		then
-			echo "$tableName not valid enter a valid name"
-			echo "elif 1"
+			echo "Empty Input! Please, enter a valid name"
 			read tableName
+
 		elif [[ ! $tableName =~ $string ]]
 		then
-			echo "$tableName  not valid please enter valid name string charaacters"
-			echo "elif 2"
+			echo "$tableName not valid. Please, enter valid name (LETTERS ONLY)"
 			read tableName
 		else 
-			echo "please enter columns number"
+			echo "Please enter columns number"
 			read numCol
 		  	case $numCol in
-			    +([1-9])) echo "number"
+			    +([1-9]))
+				    echo "Number of Columns is : $numcol"
 		                    echo "please enter name of columns with datatype seperated with :"
      
-					for (( i=1 ; i <= numCol ; i++ ))
+					for (( i=1; i<=numCol; i++ ))
 						do 
 							colMetadata="";
                                                         echo "Enter column name: "
@@ -44,7 +48,7 @@ while [ 1 -eq 1 ]
 								echo "$colName Already EXISTS"
 								i=$i-1
 								continue;
-							elif [[ -z $colName  ]]
+							elif [ -z $colName ]
 							then
 								echo "$colName not valid enter a valid name from letters"
 								echo "elif 1"
@@ -68,14 +72,15 @@ while [ 1 -eq 1 ]
                                                         then
 								colMetadata="$colMetadata:number"
 							fi
+							fi
                                                         #here fix this by add dbname before table name
-							echo  "$colMetadata" >> ~/DB-Engine/$tableName.metaData
+							echo  "$colMetadata" >> $tableName.metaData
 							
 						done
                                         #here fix this by add dbname before table name
-					touch ~/DB-Engine/$tableName
-					touch ~/DB-Engine/$tableName.metaData
-					if [[ $? -eq 0 ]]
+					touch $tableName
+					touch $tableName.metaData
+					if [ $? -eq 0 ]
 					then
 						echo "table created successfully"
 						break 2
@@ -89,5 +94,4 @@ while [ 1 -eq 1 ]
 	done		
 	
 }
-
 createTable

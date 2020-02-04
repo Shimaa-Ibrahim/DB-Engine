@@ -13,7 +13,7 @@ do
 	;;
 
 	"Create Table")
-	./createTable.sh
+	/home/shimaa/DB-Engine/createTable.sh
 	;;
 
 	"DELETE Table")
