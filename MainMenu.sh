@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/usr/bin/bash 
 shopt -s extglob
 
 function mainMenu {
@@ -14,7 +14,7 @@ echo "2- Create DATABASE"
 echo "3- Connect to DATABASE"
 echo "4- Drop DATABASE"
 echo "5- EXIT"
-read -s number
+read -p "Your Choice : " number
 case $number in 
 	1)
 	clear 
@@ -27,38 +27,25 @@ case $number in
 	clear
 	 echo "Please Enter DATABASE Name!"
 	 read dbname 
-	 #check if db exists
-	 if [ ! -d ~/DBMS/$dbname ]
-	 then
-	 case $dbname in
-	 +([a-zA-Z]))
-	 mkdir ~/DBMS/$dbname
-	 echo "DATABASE created successfully!"
-	 read -s
-	 mainMenu;; 
-	 *)
-	 echo "DATABASE name must be LETTERS ONLY"
-	 read -s
-	 mainMenu ;;
-	 esac
-      	 else
-	 echo "This DATABASE already EXISTS"
-	 read -s	
-	 mainMenu
-	 fi
-	;;
+	 createDB $dbname
+	 ;;
 
 	3)
 	 clear
 	 echo "Please Enter DATABASE name"
 	 read dbname
-	 if [[ -d ~/DBMS/$dbname ]] || [[ ! -z $dbname ]]
+	 if [ -d ~/DBMS/$dbname ] && [ ! -z $dbname ]
 	 then
 	 cd ~/DBMS/$dbname
-	 . /home/basma/DB-Engine/DB-Engine/tableMenu.sh
+	 /home/shimaa/DB-Engine/tableMenu.sh 
 	 else
+	 if [ -z $dbname ]
+	 then
+	 echo "you should enter the name of DATABASE press any key to return to the main menu"
+	 else	 
 	 echo "$dbname DOES NOT EXIST"
-	 read -s
+	 fi
+         read -s
 	 mainMenu
 	 fi
  	 ;;
@@ -96,6 +83,44 @@ case $number in
 	 mainMenu;;
 esac
 }
+
+
+function createDB {
+	clear
+#check if db exists
+	 if [ -d ~/DBMS/$1 ] && [ ! -z $1 ]
+	 then
+	 echo "This DATABASE already EXISTS"
+	 read -p "DO YOU WANT TO TRY AGAIN? [y|N] : " ans
+	 if [ $ans == "y" ]
+	 then 
+	 echo "Please Enter DATABASE name"
+	 read dbname 
+	 createDB $dbname
+	 else
+	 mainMenu
+	 fi
+	 else
+ 	 case $1 in
+	 "")
+	 echo "You must enter the DATABASE name"
+	 echo "Please Enter DATABASE name"
+	 read dbname
+	 createDB $dbname ;;
+	 +([a-zA-Z]))
+	 mkdir ~/DBMS/$dbname
+	 echo "DATABASE created successfully!"
+	 read -s
+	 mainMenu;; 
+	 *)
+	 echo "DATABASE name must be LETTERS ONLY"
+	 echo "Please Enter DATABASE name"
+	 read dbname
+	 createDB $dbname ;;
+	 esac
+	 fi
+}
+
 
 mainMenu
 
