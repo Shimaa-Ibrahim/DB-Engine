@@ -1,23 +1,22 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 
 shopt -s extglob
-#-o ! $tname =~ "'^[a-z]|[A-Z]$`" 
+
 function createTable {
-	number="^[0-9]+$"
+	                                
 				string='^[a-z]|[A-Z]$'
-			
 					echo "Enter Table Name"
-						read tname
-						
+					read tname
+			
 					while [ 1 -eq 1 ]
 					do
 						
-						if [[ -f $tname ]]  
+						if [[ -f ~/DB-Engine/$tname ]]
 							then
 							echo "$tname Already EXISTS"
 							read tname
-						elif [[ -z $tname ]]
+						elif [[ -z $tname  ]]
 						then
 							echo "$tname not valid enter a valid name"
 							echo "elif 1"
@@ -28,50 +27,53 @@ function createTable {
 							echo "elif 2"
 							read tname
 						else 
-							echo "enter columns number"
+							echo "please enter columns number"
 							read numCol
 						  	case $numCol in
-								    +([0-9])) echo "number"
-									#break
-									#	echo "plz enter name of columns with datatype sperated with ` `"
-						#	declare -a array
-						#	declare -a checkarr
-						#	for (( i=1 ; i <= numCol ; i++ ))
-						#	do 
-						#		read separator
-						#		if [[ $separator != *" "* ]]
-						#		then
-						#			echo "datatype must be seprated by '  ' "
-						#			break 2
-						#		fi
-						#		IFS=' '
-						#		read -ra NAMES <<< "$ separator"
-								#if [[ [ "${NAMES[1]}"  -eq  'number'  ] || [ "${NAMES[1]}" = 'string'  ] ]]
-								#then
-						#			array[i]=$separator
-						#			checkarr[i]=${NAMES[0]}
-								#else
-								#	echo "plz enter correct data type"
-								#	i=$i-1
+								    +([1-9])) echo "number"
+									
+						                    echo "please enter name of columns with datatype seperated with :"
+                                                       
+							for (( i=1 ; i <= numCol ; i++ ))
+							do 
+								
+								colMetadata="";
+								read -p "Enter column name: " colName;
+								# validate column name
+								#nameFlag=$(validateColumnName "$colName");
+								#if [[ $nameFlag == 0 ]]; then
+								    colMetadata="$colName";
+								    # select column datatype (string, number)
+								    read -p "Choose column's datatype String(s) Number(n): (s/n)" colDataType;
+								    if [[ $colDataType == "s" || $colDataType == "S" ]]; then
+									colMetadata="$colMetadata:string";
+								    elif [[ $colDataType == "n" || $colDataType == "N" ]]; then
+									colMetadata="$colMetadata:number";
+								    fi
+								echo  "$colMetadata" >> ~/DB-Engine/$tname.metaData
 								#fi
-						#	done
-						    touch ~/DB-Engine/$tname
-							echo "${array[@]}" > ~/DB-Engine/$tname
-							if [[ $? -eq 0 ]]
-							then
-								echo "table created"
-								break
-							fi
-									 ;;
-									 *)		
-									echo "please enter a valid number"
-									break
+							done
+								
+                                                                     touch ~/DB-Engine/$tname
+								     touch ~/DB-Engine/$tname.metaData
+									
+								
+								     if [[ $? -eq 0 ]]
+								     then
+										echo "table created successfully"
+										break 2
+								     fi
+								
+								     ;;
+								     *)		
+									echo "please enter a valid number from 1 to infinity"
+									break 2
 									;;
 							esac
 		
 						fi
-					done	
+					done		
 	
 }
 
-crTable
+createTable

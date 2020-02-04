@@ -1,4 +1,4 @@
-#!/usr/bin/bash 
+#!/bin/bash 
 shopt -s extglob
 
 function mainMenu {
@@ -52,10 +52,10 @@ case $number in
 	 clear
 	 echo "Please Enter DATABASE name"
 	 read dbname
-	 if [ -d ~/DBMS/$dbname ]
+	 if [[ -d ~/DBMS/$dbname ]] || [[ ! -z $dbname ]]
 	 then
 	 cd ~/DBMS/$dbname
-	 #tableList function 
+	 . /home/basma/DB-Engine/DB-Engine/tableMenu.sh
 	 else
 	 echo "$dbname DOES NOT EXIST"
 	 read -s
