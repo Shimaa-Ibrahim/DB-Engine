@@ -37,7 +37,7 @@ case $number in
 	 if [ -d ~/DBMS/$dbname ] && [ ! -z $dbname ]
 	 then
 	 cd ~/DBMS/$dbname
-	 /home/shimaa/DB-Engine/tableMenu.sh 
+	 ~/DB-Engine/tableMenu.sh 
 	 else
 	 if [ -z $dbname ]
 	 then

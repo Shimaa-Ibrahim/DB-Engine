@@ -13,13 +13,14 @@ do
 	;;
 
 	"Create Table")
-	/home/basma/DB-Engine/createTable.sh
+	~/DB-Engine/createTable.sh
 	;;
 
 	"DELETE Table")
 	;;
 
 	"INSERT into Table")
+	~/DB-Engine/insertRow.sh
 	;;
 
 	"DELETE RECORD")
@@ -29,7 +30,7 @@ do
 	;;
 
 	"RETURN TO MAIN MENU")
-	. /home/basma/DB-Engine/MainMenu.sh
+	. ~/DB-Engine/MainMenu.sh
 	;;
 	*)
 	 clear

@@ -50,14 +50,14 @@ while [ 1 -eq 1 ]
 								continue;
 							elif [[ ! $colName =~ ^[a-zA-Z_]*$ ]]
 							then
-								echo "$colName  not valid must be dtring character"
+								echo "$colName  not valid must be String character"
 								echo "elif 2"
 								i=$i-1
 								continue;
 							else                                                        
 							#add colname to colmetadate so that append on it datatype 
 					        	colMetadata="$colName";
-							echo "please enter column datatype String(s) TntegerNumber(n): (s/n)" 
+							echo "please enter column datatype String(s) IntgerNumber(n): (s/n)" 
 							read colDataType;
 							if [[ $colDataType == "s" || $colDataType == "S" ]]
 						        then
@@ -66,7 +66,7 @@ while [ 1 -eq 1 ]
                                                         then
 								colMetadata="$colMetadata:number"
 							else 
-								echo "$colDatatype is not valid please enter column name again and then datatype String(s) TntegerNumber(n): (s/n)"
+								echo "$colDatatype is not valid please enter column name again and then datatype String(s) IntgerNumber(n): (s/n)"
 								i=$i-1
 								continue;
 							fi
@@ -82,7 +82,7 @@ while [ 1 -eq 1 ]
 
 							if [[ "${colNames[i]}" == "${colNames[j]}" ]]
 							then
-								echo "no duplicates is allowed in column names, cannot create table please try again"
+								echo "NO duplicates is allowed in column names, cannot create table please try again"
  
   								echo "press Enter to continue "
 							        rm -rf $tableName.metaData
