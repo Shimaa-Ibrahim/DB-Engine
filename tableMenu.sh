@@ -13,7 +13,7 @@ do
 	;;
 
 	"Create Table")
-	/home/shimaa/DB-Engine/createTable.sh
+	/home/basma/DB-Engine/createTable.sh
 	;;
 
 	"DELETE Table")
@@ -29,7 +29,7 @@ do
 	;;
 
 	"RETURN TO MAIN MENU")
-	. /home/shimaa/DB-Engine/MainMenu.sh
+	. /home/basma/DB-Engine/MainMenu.sh
 	;;
 	*)
 	 clear
