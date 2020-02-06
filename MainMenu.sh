@@ -56,7 +56,7 @@ case $number in
 	 read dbname
  	 if [ -d ~/DBMS/$dbname ]
 	 then
-	 echo "Are you sure you want to delete $dbname BATABASE [y|n]"
+	 echo "Are you sure you want to delete $dbname DATABASE [y|N]"
 	 read ans
 	 case $ans in 
 	 y)
@@ -109,7 +109,7 @@ function createDB {
 	 createDB $dbname ;;
 	 +([a-zA-Z]))
 	 mkdir ~/DBMS/$dbname
-	 echo "DATABASE created successfully!"
+	 echo "DATABASE created SUCCESSFULLY!"
 	 read -s
 	 mainMenu;; 
 	 *)

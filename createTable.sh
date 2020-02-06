@@ -9,7 +9,7 @@ read tableName
 while [ 1 -eq 1 ]
 	do
                 #here fix this by add dbname before table name
-		if [ -f $tableName ] 
+		if [ -f $tableName ] && [ ! -z $tableName ]
 		then
 			echo "$tableName Already EXISTS Please enter a valid name"
 			read -p "TRY AGAIN! [y|N] : " answer

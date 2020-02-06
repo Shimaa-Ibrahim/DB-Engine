@@ -8,7 +8,7 @@ do
 	"List Tables")
 	clear      
 	echo "*** TABLES LIST***"   
-	ls -1
+	ls -1 | grep -v ".metaData"
 
 	;;
 
