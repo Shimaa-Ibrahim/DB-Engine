@@ -33,6 +33,7 @@ do
 	;;
 
 	"SELECT from Table")
+	~/DB-Engine/selectTable.sh
 	;;
 
 	"RETURN TO MAIN MENU")
