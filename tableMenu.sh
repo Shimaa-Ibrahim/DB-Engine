@@ -1,4 +1,4 @@
-#!/usr/bin/bash 
+#!/bin/bash 
 shopt -s extglob
 function tableMenu {
 clear
@@ -13,7 +13,9 @@ do
 	;;
 
 	"Create Table")
-	~/DB-Engine/createTable.sh
+	. ~/DB-Engine/createTable.sh
+	createTable
+	
 	;;
 
 	"DELETE Table")
@@ -24,6 +26,8 @@ do
 	;;
 
 	"DELETE RECORD")
+	. ~/DB-Engine/deleteRecord.sh
+	deleteRecord
 	;;
 
 	"SELECT from Table")

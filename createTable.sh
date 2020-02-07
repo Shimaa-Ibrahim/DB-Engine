@@ -1,6 +1,7 @@
-#!/usr/bin/bash 
+#!/bin/bash 
 shopt -s extglob
-
+typeset -i numcol
+declare -a colNames
 function createTable {	
 clear                                
 
@@ -34,8 +35,10 @@ while [ 1 -eq 1 ]
 		  	case $numCol in
 			    +([1-9]))
 				    echo "Number of Columns is : $numcol"
-		                    declare -a colNames
-     
+		                    #declare -a colNames
+     					#colMetadata=$numCol;
+					#echo  "$colMetadata" >> $tableName.metaData
+
 					for (( i=1; i<=numCol; i++ ))
 						do 
 							colMetadata="";
@@ -92,6 +95,7 @@ while [ 1 -eq 1 ]
 							fi
    						      done
     				 	         done
+					echo  "${colNames[@]}" >> $tableName
                                         #here fix this by add dbname before table name
 					touch $tableName
 					touch $tableName.metaData
@@ -103,6 +107,7 @@ while [ 1 -eq 1 ]
                		esac
 		fi
 	done		
-	
+#echo "${colNames[@]}"
+#echo "$numCol"
 }
-createTable
+

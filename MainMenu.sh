@@ -1,4 +1,4 @@
-#!/usr/bin/bash 
+#!/bin/bash 
 shopt -s extglob
 
 function mainMenu {
@@ -36,8 +36,12 @@ case $number in
 	 read dbname
 	 if [ -d ~/DBMS/$dbname ] && [ ! -z $dbname ]
 	 then
+
 	 cd ~/DBMS/$dbname
+	chmod 777 ~/DB-Engine
+	chmod 777 ~/DB-Engine/*.sh
 	 ~/DB-Engine/tableMenu.sh 
+
 	 else
 	 if [ -z $dbname ]
 	 then
