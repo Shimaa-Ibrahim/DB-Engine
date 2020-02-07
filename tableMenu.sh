@@ -19,6 +19,8 @@ do
 	;;
 
 	"DELETE Table")
+	. ~/DB-Engine/deleteTable.sh
+	deleteTable
 	;;
 
 	"INSERT into Table")
