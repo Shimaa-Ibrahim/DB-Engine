@@ -58,7 +58,7 @@ case $chioce in
 			echo "This value does not exist"
 			echo "----PRESS ANY KEY TO RETURN TO TABLE MENU----"
 			read -s
-	 		~/DB-Engine/tableMenu.sh;;
+	 		~/DB-Engine/tableMenu.sh
 			fi
 			
 		
