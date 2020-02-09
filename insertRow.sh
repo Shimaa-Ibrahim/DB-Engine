@@ -2,10 +2,10 @@
 shopt -s extglob
 function insertRow {
 clear
-row="";
+row="| ";
 echo "insert Table name"
 read tableName
-if [ -f $tableName ] && [ ! -z $tableName ]
+if [[ -f $tableName ]] && [[ ! -z $tableName ]]
 then
 col_Number=`cat $tableName.metaData | wc -l`
 for (( i=1; i<=col_Number; i++ ))
@@ -13,8 +13,13 @@ do
 	col_Type $i
 
 done
-        echo "$row" >> $tableName
+        echo "$row |" >> $tableName
 	clear
+	echo "row values is : "
+	echo "--------------------------------------------------"
+	sed -n -e "1p" -e "$ p" $tableName | column -t -o "  |  "
+	echo "--------------------------------------------------"
+
 	echo "Row created SUCCESSFULLY"
 	read -s
 	~/DB-Engine/tableMenu.sh
@@ -32,7 +37,7 @@ col_type=`sed -n "${num}p" $tableName.metaData | cut -d: -f2`
 
 echo "Insert ( $col_name ) column Value ( $col_type value ) -- null values is accepted --"
 read col_value
-if [ $col_type == "string" ]
+if [[ $col_type == "string" ]]
 then
 while [ 1 -eq 1 ]
 do
@@ -42,9 +47,17 @@ do
 	row+="$col_value "
 	break ;;
 	"")
-	echo "column value is null (accepted)\n"
+	read -p "You enter null value (accepted) , Are you sure! [y|N] : " ans
+	if [[ $ans == "Y" || $ans == "y" ]]
+	then
 	row+="null "
-	break ;;
+	echo "Column value is null (accepted)\n"
+	break
+	else
+	echo "--TRY AGAIN --"
+	echo "Insert ( $col_name ) column Value ( $col_type value ) -- null values is accepted --"
+	read col_value
+	fi;;
 	*)
 	echo "--INVALID DATATYPE --TRY AGAIN--"
 	echo "Insert ( $col_name ) column Value ( $col_type value ) -- null values is accepted --"
@@ -52,7 +65,7 @@ do
 	esac
 done
 
-elif [ $col_type == "number" ]
+elif [[ $col_type == "number" ]]
 then
 while [ 1 -eq 1 ]
 do
@@ -62,9 +75,18 @@ do
 	row+="$col_value "
 	break;;
 	"")
+	read -p "You enter null value (accepted) , Are you sure! [y|N] : " ans
+	if [[ $ans == "Y" || $ans == "y" ]]
+	then
 	row+="null "
-	echo "column value is null (accepted)\n"
-	break;;
+	echo "Column value is null (accepted)\n"
+	break
+	else
+	echo "--TRY AGAIN --"
+	echo "Insert ( $col_name ) column Value ( $col_type value ) -- null values is accepted --"
+	read col_value
+	fi	
+	;;
 	*)
 	echo "--INVALID DATATYPE --TRY AGAIN --"
 	echo "Insert ( $col_name ) column Value ( $col_type value ) -- null values is accepted --"

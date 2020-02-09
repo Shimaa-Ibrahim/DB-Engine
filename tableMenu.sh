@@ -15,7 +15,6 @@ do
 	"Create Table")
 	. ~/DB-Engine/createTable.sh
 	createTable
-	
 	;;
 
 	"DELETE Table")

@@ -4,7 +4,7 @@ shopt -s extglob
 function mainMenu {
 clear
 #create db directory
-if [ ! -d ~/DBMS ]
+if [[ ! -d ~/DBMS ]]
 then
 mkdir ~/DBMS
 fi
@@ -34,16 +34,16 @@ case $number in
 	 clear
 	 echo "Please Enter DATABASE name"
 	 read dbname
-	 if [ -d ~/DBMS/$dbname ] && [ ! -z $dbname ]
+	 if [[ -d ~/DBMS/$dbname ]] && [[ ! -z $dbname ]]
 	 then
 
 	 cd ~/DBMS/$dbname
-	chmod 777 ~/DB-Engine
-	chmod 777 ~/DB-Engine/*.sh
+	chmod +x ~/DB-Engine
+	chmod +x ~/DB-Engine/*.sh
 	 ~/DB-Engine/tableMenu.sh 
 
 	 else
-	 if [ -z $dbname ]
+	 if [[ -z $dbname ]]
 	 then
 	 echo "you should enter the name of DATABASE press any key to return to the main menu"
 	 else	 
@@ -58,7 +58,7 @@ case $number in
  	 clear
 	 echo "Enter DATABASE name"
 	 read dbname
- 	 if [ -d ~/DBMS/$dbname ]
+ 	 if [[ -d ~/DBMS/$dbname ]]
 	 then
 	 echo "Are you sure you want to delete $dbname DATABASE [y|N]"
 	 read ans
@@ -92,11 +92,11 @@ esac
 function createDB {
 	clear
 #check if db exists
-	 if [ -d ~/DBMS/$1 ] && [ ! -z $1 ]
+	 if [[ -d ~/DBMS/$1 ]] && [[ ! -z $1 ]]
 	 then
 	 echo "This DATABASE already EXISTS"
 	 read -p "DO YOU WANT TO TRY AGAIN? [y|N] : " ans
-	 if [ $ans == "y" ]
+	 if [[ $ans == "y" ]]
 	 then 
 	 echo "Please Enter DATABASE name"
 	 read dbname 

@@ -3,7 +3,7 @@ function selectRow {
 clear
 echo "Enter Table Name"
 read tableName
-if [ -f $tableName ] && [ ! -z $tableName ]
+if [[ -f $tableName ]] && [[ ! -z $tableName ]]
 then
 clear 
 echo "1- Select All from Table"
@@ -25,18 +25,18 @@ case $chioce in
 		col_Name=`sed -n "$i p" $tableName.metaData | cut -d: -f1`
 		col_arr[$i-1]=$col_Name				
 	done
-
+	echo "$tableName columns are : ${col_arr[@]}"
 	read -p "Enter The Column name : " col_Name
 	for (( i=1; i<=col_Number; i++ ))
 		do
-			if [ ${col_arr[$i-1]} == $col_Name ]
+			if [[ ${col_arr[$i-1]} == $col_Name ]]
 			then
 				column=$i
 				break;
 			fi
 		done
 
-	if [ $column -eq 10 ]
+	if [[ $column -eq 10 ]]
 	then
 		echo "This column does not exist"
 	else
@@ -44,18 +44,21 @@ case $chioce in
 		for (( i=1; i<=fields; i++ ))
 		do
 			field_value=`sed -n "$i p" $tableName | cut -d ' ' -f$column`
-			if [ $field_value == $value ]
+			if [[ $field_value == $value ]]
 			then
 			echo "---------------- $tableName Table Data ----------------"
-			sed -n "$i p" $tableName | column -t -o "  |  "
+			sed -n -e "1p" -e "$i p" $tableName | column -t -o "  |  "
 			echo "--------------------------------------------------"
 			flag=1			
 			break;
 			fi
 		done
-			if [ $flag -eq 0 ]
+			if [[ $flag -eq 0 ]]
 			then
 			echo "This value does not exist"
+			echo "----PRESS ANY KEY TO RETURN TO TABLE MENU----"
+			read -s
+	 		~/DB-Engine/tableMenu.sh;;
 			fi
 			
 		
@@ -68,7 +71,7 @@ case $chioce in
 	 read -s
 	 ~/DB-Engine/tableMenu.sh;;
 esac
-elif [ -z $tableName ]
+elif [[ -z $tableName ]]
 then
 	echo "You should enter table name"
 	echo "----PRESS ANY KEY TO RETURN TO TABLE MENU----"
