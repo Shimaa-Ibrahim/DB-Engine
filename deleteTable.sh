@@ -1,6 +1,7 @@
 #!/bin/bash 
 
 function deleteTable { 
+	clear
 	echo "Enter Table Name to delete"
 	read tableName 
 	if [ -f $tableName ] && [ -f $tableName.metaData ]
