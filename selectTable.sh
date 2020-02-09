@@ -31,7 +31,8 @@ case $chioce in
 		do
 			if [[ ${col_arr[$i-1]} == $col_Name ]]
 			then
-				column=$i
+				column=$((i+1))
+				echo "$column"
 				break;
 			fi
 		done
@@ -88,10 +89,15 @@ fi
 
 function selectAll {
 clear
-echo $'----------------' "$1" $'Table Data ---------------- \n'
-column -t -o "  |  " $1
-echo "--------------------------------------------------"
-
+col_Number=`cat $tableName | wc -l`
+if [[ $col_Number -eq 1 ]]
+then
+	echo "---NO DATA TO SHOW---"
+else
+	echo $'----------------' "$1" $'Table Data ---------------- \n'
+	column -t -o "  |  " $1
+	echo "--------------------------------------------------"
+fi
 
 }
 

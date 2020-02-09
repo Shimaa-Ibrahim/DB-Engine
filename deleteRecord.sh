@@ -5,13 +5,9 @@ function deleteRecord {
 clear
 	echo "please enter the table name to delete from"
 	read tableName
-while [ 1 -eq 1 ]
- do
-	clear
 		if [ ! -f $tableName ] && [ ! -z $tableName ]
 		then 
 			echo "inValid table name does not exist please enter a valid table name"
-			read tableName
 		elif [ -z $tableName ]
 		then
 			echo "Empty Input! Please, enter a valid name"
@@ -37,7 +33,6 @@ while [ 1 -eq 1 ]
 			then
 				deleteAll;
 				echo "all records deleted successfully"
-				break;
 			elif  [[ $answer == "o" || $answer == "O" ]]
 			then
 				echo "please enter column name to delete a record according to it from the following"
@@ -49,7 +44,7 @@ while [ 1 -eq 1 ]
 					if [[ ${colNames[$i-1]} == $colNameToDeleteAcc ]]
 					then
 						colNameExist=1
-						fieldNum=$i
+						fieldNum=$((i+1))
 						break;
 					
 					fi
@@ -57,8 +52,7 @@ while [ 1 -eq 1 ]
 				
 				if [[ colNameExist -eq 0 ]]
 				then
-					echo "in valid column name nothing to delete"				
-					break;
+					echo "invalid column name nothing to delete"				
 				elif [[ colNameExist -eq 1 ]]
 				then
 							
@@ -66,7 +60,6 @@ while [ 1 -eq 1 ]
 					do
 						colValue=`sed -n "$i p" $tableName | cut -d ' ' -f$fieldNum`
 						colValues[$i-1]=$colValue
-						
 					done
 					echo ${colValues[@]}
 					
@@ -90,17 +83,14 @@ while [ 1 -eq 1 ]
 						 done
 					if [[ colValueExist -eq 0 ]]
 					then
-						echo "in valid column value nothing to delete"
-						break;
+						echo "Invalid column value nothing to delete"
 					fi
-					#to exit the while loop after delete the record
-					break;
+
 				fi
 			else
-				echo "in Valid answer"
+				echo "Invalid answer"
 			fi	  
 		  fi	
- done
 }
 function deleteAll {
 	rowNum=`cat $tableName | wc -l`

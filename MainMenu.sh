@@ -40,7 +40,7 @@ case $number in
 	 cd ~/DBMS/$dbname
 	chmod +x ~/DB-Engine
 	chmod +x ~/DB-Engine/*.sh
-	 ~/DB-Engine/tableMenu.sh 
+	 . ~/DB-Engine/tableMenu.sh 
 
 	 else
 	 if [[ -z $dbname ]]
