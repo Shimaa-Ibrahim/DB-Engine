@@ -41,7 +41,7 @@ do
 	*)
 	 clear
  	 echo "WARNING::Wrong choice, please select from 1 to 7"
-	 echo "----PRESS ANY KEY TO RETURN TO THE MAIN MENU----"
+	 echo "----PRESS ENTER TO RETURN TO THE MAIN MENU----"
 	 read -s
 	 tableMenu;;
 
