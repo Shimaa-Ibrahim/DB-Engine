@@ -57,7 +57,7 @@ case $chioce in
 			if [[ $flag -eq 0 ]]
 			then
 			echo "This value does not exist"
-			echo "----PRESS ANY KEY TO RETURN TO TABLE MENU----"
+			echo "----PRESS ENTER TO RETURN TO TABLE MENU----"
 			read -s
 	 		~/DB-Engine/tableMenu.sh
 			fi
@@ -68,20 +68,20 @@ case $chioce in
 	*)
 	 clear
 	 echo "WARNING::Wrong choice, please select 1 or 2"
-	 echo "----PRESS ANY KEY TO RETURN TO TABLE MENU----"
+	 echo "----PRESS ENTER TO RETURN TO TABLE MENU----"
 	 read -s
 	 ~/DB-Engine/tableMenu.sh;;
 esac
 elif [[ -z $tableName ]]
 then
 	echo "You should enter table name"
-	echo "----PRESS ANY KEY TO RETURN TO TABLE MENU----"
+	echo "----PRESS ENTER TO RETURN TO TABLE MENU----"
 	read -s
 	 ~/DB-Engine/tableMenu.sh 
 else
 
 	echo "$tableName does not exist"
-	echo "----PRESS ANY KEY TO RETURN TO TABLE MENU----"
+	echo "----PRESS ENTER TO RETURN TO TABLE MENU----"
 	read -s
 	 ~/DB-Engine/tableMenu.sh 
 fi
