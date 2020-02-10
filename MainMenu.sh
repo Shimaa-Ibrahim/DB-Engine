@@ -20,7 +20,7 @@ case $number in
 	clear 
 	echo "***DATABASES***"
 	ls -1 ~/DBMS
-	echo "----PRESS ANY KEY TO RETURN TO THE MAIN MENU----"
+	echo "----PRESS ANY KEY ENTER TO THE MAIN MENU----"
 	read -s
 	mainMenu;;
 	2)
@@ -82,7 +82,7 @@ case $number in
 	*)
 	 clear
 	 echo "WARNING::Wrong choice, please select from 1 to 4"
-         echo "----PRESS ANY KEY TO RETURN TO THE MAIN MENU----"
+         echo "----PRESS ENTER TO RETURN TO THE MAIN MENU----"
 	 read -s
 	 mainMenu;;
 esac
